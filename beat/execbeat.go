@@ -36,14 +36,14 @@ func (execBeat *Execbeat) Setup(b *beat.Beat) error {
 	return nil
 }
 
-func (exexBeat *Execbeat) Run(b *beat.Beat) error {
+func (execBeat *Execbeat) Run(b *beat.Beat) error {
 	var err error
 
 	var poller *Executor
 
-	for i, exitConfig := range exexBeat.ExecConfig.Execbeat.Execs {
+	for i, exitConfig := range execBeat.ExecConfig.Execbeat.Execs {
 		logp.Debug("execbeat", "Creating poller # %v with command: %v", i, exitConfig.Command)
-		poller = NewExecutor(exexBeat, exitConfig)
+		poller = NewExecutor(execBeat, exitConfig)
 		go poller.Run()
 	}
 
